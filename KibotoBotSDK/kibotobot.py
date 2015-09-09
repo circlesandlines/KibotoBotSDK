@@ -48,7 +48,7 @@ class BotEventHandler(tornado.web.RequestHandler):
 		
 
 class Bot:
-	def __init__(self, kiboto_server_hostname, kiboto_server_port, bot_hostname, bot_port, logic_method, game_id, session_id="", player_id=""):
+	def __init__(self, kiboto_server_hostname="localhost", kiboto_server_port=9090, bot_hostname="localhost", bot_port=9091, logic_method=None, game_id="sample_game", session_id="1", player_id=""):
 
 		# bot config
 		self.bot_logic = logic_method

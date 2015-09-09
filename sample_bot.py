@@ -5,6 +5,14 @@
 
 from KibotoBotSDK import bot
 
+# below are the default configs that the Bot object initializes to
+# if not provided. can switch them here though
+# if you want to run a bot locally and don't care about hostnames or ports,
+# you can initialize like so:
+#	mybot = bot.Bot(logic_method=bot_brain, game_id="yourgamehere")
+# or if using the sample game, only supply the logic method:
+#	mybot = bot.Bot(logic_method=bot_brain)
+
 config = {
 	"kiboto_server_hostname": "localhost",
 	"kiboto_server_port": 9090,
