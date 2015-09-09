@@ -28,6 +28,7 @@ import requests
 import urllib
 
 class NoSessionAvailableException(Exception): pass
+class NoBotBrainException(Exception): pass
 
 class BotEventHandler(tornado.web.RequestHandler):
 	def initialize(self, bot_logic, player_id, game_id):
@@ -43,12 +44,15 @@ class BotEventHandler(tornado.web.RequestHandler):
 
 	@tornado.web.asynchronous
 	def ping(self):
-		""" senf a 200 on ping. this is so the clients know the bot is ready :)"""
+		""" send a 200 on ping. this is so the clients know the bot is ready :)"""
 		self.send_error(200)
 		
 
 class Bot:
 	def __init__(self, kiboto_server_hostname="localhost", kiboto_server_port=9090, bot_hostname="localhost", bot_port=9091, logic_method=None, game_id="sample_game", session_id="1", player_id=""):
+
+		if not logic_method:
+			raise NoBotBrainException("Bot's logic method not specified")
 
 		# bot config
 		self.bot_logic = logic_method
