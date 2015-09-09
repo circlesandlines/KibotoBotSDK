@@ -3,7 +3,7 @@
 	This is a basic usage example
 """
 
-import KibotoBot
+from KibotoBotSDK import bot
 
 config = {
 	"kiboto_server_hostname": "localhost",
@@ -26,5 +26,12 @@ def bot_brain(event_data, player_id, game_id):
 	return reply
 
 
-mybot = KibotoBot(logic_method=bot_brain)
+mybot = bot.Bot(config['kiboto_server_hostname'],
+		config['kiboto_server_port'],
+		config['bot_hostname'],
+		config['bot_port'],
+		logic_method=bot_brain,
+		config['game_id'],
+		config['session_id'],
+		config['player_id'])
 mybot.start()

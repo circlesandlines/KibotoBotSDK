@@ -72,10 +72,14 @@ class Bot:
 
 		session_chosen = False
 		for k,v in sessions.iteritems():
+			# does the configured session have a match in the actual
+			# on-going session data?
 			if self.session_key in k:
 				if v != "":
 					params = {
-						'session_key': self.session_key,
+						# NOTE: we use k here instead of self.session_key
+						# because self.session_key could have vaues missing
+						'session_key': k,
 						'hostname': bot_endpoint
 					}
 					query = self.kiboto_subscription_url + '?' + urllib.urlencode(params)

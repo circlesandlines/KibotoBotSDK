@@ -4,7 +4,7 @@ with open('requirements.txt') as f:
     requires = f.read().strip().splitlines()
 
 setup(
-    name='bot',
+    name='KibotoBotSDK',
     version='0.01',
     packages=[
         'KibotoBotSDK',
