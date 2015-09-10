@@ -81,23 +81,32 @@ class Bot:
 		if sessions_request.status_code != 200:
 			raise KibotoServerConnectionError("connection not successful: " + str(sessions_request.status_code))
 
-		sessions = json.loads(sessions_request.text)
+		sessions = sessions_request.json
 
 		session_chosen = False
-		for k,v in sessions.iteritems():
+		for active_session_key, active_bot_endpoint in sessions.iteritems():
 			# does the configured session have a match in the actual
 			# on-going session data?
-			if self.session_key in k:
-				if v != "":
+			# eg. find   "sample_game:1:P1" or
+			# look for specific session in the game:
+			# "sample_game:1"
+			# or any session in the game:
+			# "sample_game"
+			# will check substring
+			# pick the first match and try to reserve it
+			if self.session_key in active_session_key:
+				# if no bot has been set to the client at ksession_key
+				# try to reserve it
+				if active_bot_endpoint == "":
 					params = {
 						# NOTE: we use k here instead of self.session_key
 						# because self.session_key could have vaues missing
-						'session_key': k,
-						'hostname': bot_endpoint
+						'session_key': active_session_key,
+						'hostname': active_bot_endpoint
 					}
 					query = self.kiboto_subscription_url + '?' + urllib.urlencode(params)
 					success = requests.get(query)
-					if success.status == 200:
+					if success.status_code == 200:
 						session_chosen = True
 						# don't try to connect to others if already connected to one!
 						break
