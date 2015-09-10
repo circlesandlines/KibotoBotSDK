@@ -29,6 +29,7 @@ import urllib
 
 class NoSessionAvailableException(Exception): pass
 class NoBotBrainException(Exception): pass
+class KibotoServerConnectionError(Exception): pass
 
 class BotEventHandler(tornado.web.RequestHandler):
 	def initialize(self, bot_logic, player_id, game_id):
@@ -72,7 +73,15 @@ class Bot:
 		"""find a session and connect. this part is all synchronous code. only start async once bot starts listening"""
 
 		# get all active sessions
-		sessions = json.loads(requests.get(self.kiboto_sessions_url).text)
+		try:
+			sessions_request = requests.get(self.kiboto_sessions_url)
+		except Exception as e:
+			raise KibotoServerConnectionError(str(e))
+
+		if sessions_request.status_code != 200:
+			raise KibotoServerConnectionError("connection not successful: " + str(sessions_request.status_code))
+
+		sessions = json.loads(sessions_request.text)
 
 		session_chosen = False
 		for k,v in sessions.iteritems():
