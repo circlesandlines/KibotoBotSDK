@@ -58,6 +58,7 @@ class Bot:
 		# bot config
 		self.bot_logic = logic_method
 		self.bot_endpoint = bot_hostname + ':' + str(bot_port) + '/event'
+		self.bot_port = bot_port
 		self.game_id = game_id
 		self.session_id = session_id
 		self.player_id = player_id
@@ -81,7 +82,13 @@ class Bot:
 		if sessions_request.status_code != 200:
 			raise KibotoServerConnectionError("connection not successful: " + str(sessions_request.status_code))
 
-		sessions = sessions_request.json
+		sessions = json.loads(sessions_request.text)
+		print 'sessions available: ', sessions
+		print 'searching for: ', self.session_key
+		print 'bot endpoint: ', bot_endpoint
+
+		if not sessions:
+			print "sessions empty?", sessions
 
 		session_chosen = False
 		for active_session_key, active_bot_endpoint in sessions.iteritems():
@@ -97,14 +104,15 @@ class Bot:
 			if self.session_key in active_session_key:
 				# if no bot has been set to the client at ksession_key
 				# try to reserve it
-				if active_bot_endpoint == "":
+				if active_bot_endpoint == "empty":
 					params = {
 						# NOTE: we use k here instead of self.session_key
 						# because self.session_key could have vaues missing
 						'session_key': active_session_key,
-						'hostname': active_bot_endpoint
+						'hostname': bot_endpoint
 					}
 					query = self.kiboto_subscription_url + '?' + urllib.urlencode(params)
+					print "query = ", query
 					success = requests.get(query)
 					if success.status_code == 200:
 						session_chosen = True
@@ -122,16 +130,17 @@ class Bot:
 
 		# configure the bot event handler and the user supplied logic
 		bot_server_app = tornado.web.Application([
-			(r"/event", BotEventHandler, dict(	bot_logic=self.bod_logic,
+			(r"/event", BotEventHandler, dict(	bot_logic=self.bot_logic,
 								player_id=self.player_id,
 								game_id=self.game_id ))
 			])
 
 		# start 'er up
-		sockets = bind_sockets(self.port)
+		sockets = bind_sockets(self.bot_port)
 		fork_processes(None)
 		server = HTTPServer(bot_server_app)
 		server.add_sockets(sockets)
 
 		# start listening
+		print "Bot is listening d-_-b"
 		tornado.ioloop.IOLoop.instance().start()
