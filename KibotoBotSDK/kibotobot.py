@@ -65,8 +65,8 @@ class Bot:
 		# NOTE 2 rstrips just in case session id and player id not specified
 
 		# kiboto server connection config
-		self.kiboto_subscription_url = kiboto_server_hostname + ':' + kiboto_server_port + '/subscribe'
-		self.kiboto_sessions_url = kiboto_server_hostname + ':' + kiboto_server_port + '/get_sessions'
+		self.kiboto_subscription_url = kiboto_server_hostname + ':' + str(kiboto_server_port) + '/subscribe'
+		self.kiboto_sessions_url = kiboto_server_hostname + ':' + str(kiboto_server_port) + '/get_sessions'
 
 	def join_session(self, bot_endpoint):
 		"""find a session and connect. this part is all synchronous code. only start async once bot starts listening"""

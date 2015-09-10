@@ -3,7 +3,7 @@
 	This is a basic usage example
 """
 
-from KibotoBotSDK import bot
+from KibotoBotSDK import kibotobot
 
 # below are the default configs that the Bot object initializes to
 # if not provided. can switch them here though
@@ -14,9 +14,9 @@ from KibotoBotSDK import bot
 #	mybot = bot.Bot(logic_method=bot_brain)
 
 config = {
-	"kiboto_server_hostname": "localhost",
+	"kiboto_server_hostname": "http://localhost",
 	"kiboto_server_port": 9090,
-	"bot_hostname": "localhost",
+	"bot_hostname": "http://localhost",
 	"bot_port": 9091,
 	"game_id": "sample_game",
 	"session_id": "1",
@@ -34,12 +34,12 @@ def bot_brain(event_data, player_id, game_id):
 	return reply
 
 
-mybot = bot.Bot(config['kiboto_server_hostname'],
-		config['kiboto_server_port'],
-		config['bot_hostname'],
-		config['bot_port'],
+mybot = kibotobot.Bot(kiboto_server_hostname=config['kiboto_server_hostname'],
+		kiboto_server_port=config['kiboto_server_port'],
+		bot_hostname=config['bot_hostname'],
+		bot_port=config['bot_port'],
 		logic_method=bot_brain,
-		config['game_id'],
-		config['session_id'],
-		config['player_id'])
+		game_id=config['game_id'],
+		session_id=config['session_id'],
+		player_id=config['player_id'])
 mybot.start()
