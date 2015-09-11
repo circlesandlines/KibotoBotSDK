@@ -40,7 +40,9 @@ class BotEventHandler(tornado.web.RequestHandler):
 	@tornado.web.asynchronous
 	def post(self):
 		message = json.loads(self.request.body)
-		self.write(self.bot_logic(message['event'], self.player_id, self.game_id))
+		reply = self.bot_logic(message['event'], self.player_id, self.game_id)
+		print reply
+		self.write(json.dumps(reply))
 		self.finish()
 
 	@tornado.web.asynchronous
