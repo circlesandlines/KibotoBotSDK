@@ -6,4 +6,4 @@ Create a competitive bot to be used in games that support Kiboto
 - [x] listen for game events and execute the bot logic
 - [ ] solidify alternate workflows
 - [ ] add formal tests
-
+- [ ] formal documentation
