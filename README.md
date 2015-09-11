@@ -7,3 +7,6 @@ Create a competitive bot to be used in games that support Kiboto
 - [ ] solidify alternate workflows
 - [ ] add formal tests
 - [ ] formal documentation
+
+## Kiboto Server
+https://github.com/circlesandlines/Kiboto
