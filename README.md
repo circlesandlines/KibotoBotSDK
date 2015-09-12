@@ -35,14 +35,6 @@ python setup.py install
 ```python
 from KibotoBotSDK import kibotobot
 
-# below are the default configs that the Bot object initializes to
-# if not provided. can switch them here though
-# if you want to run a bot locally and don't care about hostnames or ports,
-# you can initialize like so:
-#	mybot = bot.Bot(logic_method=bot_brain, game_id="yourgamehere")
-# or if using the sample game, only supply the logic method:
-#	mybot = bot.Bot(logic_method=bot_brain)
-
 def bot_brain(event_data, player_id, game_id):
 	""" your bot logic goes here.
 	be sure to follow game specific formatting """
@@ -54,6 +46,12 @@ def bot_brain(event_data, player_id, game_id):
 	return reply
 
 
+# The Bot object defaults to local mode (shown below)
+# if you want to run a bot locally and don't care about hostnames or ports,
+# you can initialize like so instead:
+#	mybot = bot.Bot(logic_method=bot_brain, game_id="yourgamehere")
+# or if using the sample game, only supply the logic method:
+#	mybot = bot.Bot(logic_method=bot_brain)
 mybot = kibotobot.Bot(kiboto_server_hostname="http://localhost",
 		kiboto_server_port=9090,
 		bot_hostname="http://localhost",
