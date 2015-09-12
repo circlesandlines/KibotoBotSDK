@@ -139,10 +139,10 @@ class Bot:
 
 		# start 'er up
 		sockets = bind_sockets(self.bot_port)
+		print "Bot is listening d[-_-]b"
 		fork_processes(None)
 		server = HTTPServer(bot_server_app)
 		server.add_sockets(sockets)
 
 		# start listening
-		print "Bot is listening d-_-b"
 		tornado.ioloop.IOLoop.instance().start()
