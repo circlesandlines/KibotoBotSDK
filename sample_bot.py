@@ -25,4 +25,6 @@ mybot = kibotobot.Bot(kiboto_server_hostname="http://localhost",
 		game_id="sample_game",
 		session_id="1",
 		player_id="P1")
-mybot.start()
+
+if __name__=="__main__":
+	mybot.start()
