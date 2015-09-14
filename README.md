@@ -7,8 +7,8 @@ The Kiboto Bot SDK is currently in a pre-release state. Stay tuned to get instal
 ## TODO for 1.0 release
 - [x] search for session based on config
 - [x] listen for game events and execute the bot logic
-- [ ] solidify edge cases
-- [ ] add formal tests
+- [x] solidify edge cases
+- [ ] add formal tests [simple software, coupled to webserver. samples might suffice]
 - [ ] formal documentation
 
 ## Requirements
