@@ -2,7 +2,7 @@
 Create a competitive bot to be used in games that support Kiboto
 
 ## Status
-The Kiboto Bot SDK is currently in a pre-release state. Stay tuned to get installation instructions environment setup usage documentation
+The Kiboto Bot SDK is currently in a pre-release state. Stay tuned to get installation instructions, environment setup, and tutorials
 
 ## TODO for 1.0 release
 - [x] search for session based on config
