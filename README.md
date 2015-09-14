@@ -72,7 +72,7 @@ if __name__=="__main__":
 - start the bot in debug mode:
 ```bash
 python yourbot.py
-``
+```
 - or start the bot in production mode:
 ```bash
 python yourbot.py &> /dev/null &
