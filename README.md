@@ -32,6 +32,7 @@ python setup.py install
 ```
 
 ## Basic usage example
+### Simple bot script example:
 ```python
 from KibotoBotSDK import kibotobot
 
@@ -64,6 +65,19 @@ mybot = kibotobot.Bot(kiboto_server_hostname="http://localhost",
 if __name__=="__main__":
 	mybot.start()
 ```
+
+### Start the script:
+
+- make sure the kiboto server you're connecting to is actually there
+- start the bot in debug mode:
+```bash
+python yourbot.py
+``
+- or start the bot in production mode:
+```bash
+python yourbot.py &> /dev/null &
+```
+- that's it!
 
 ## Kiboto Server
 https://github.com/circlesandlines/Kiboto

@@ -104,8 +104,8 @@ class Bot:
 			# will check substring
 			# pick the first match and try to reserve it
 			if self.session_key in active_session_key:
-				# if no bot has been set to the client at ksession_key
-				# try to reserve it
+				# if no bot has been set to the player session
+				# try to reserve it.
 				if active_bot_endpoint == "empty":
 					params = {
 						# NOTE: we use k here instead of self.session_key
@@ -120,6 +120,11 @@ class Bot:
 						session_chosen = True
 						# don't try to connect to others if already connected to one!
 						break
+				elif active_bot_endpoint == bot_endpoint:
+					# if the bot crashed and is trying to re-connect,
+					# let it do so. check if the set endpoint is our own
+					session_chosen = True
+					break
 
 		if not session_chosen:
 			raise NoSessionAvailableException('The session does not exist: ' + self.session_key)
