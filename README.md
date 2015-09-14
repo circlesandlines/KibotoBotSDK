@@ -31,7 +31,8 @@ The package can be installed with setuptools:
 python setup.py install
 ```
 
-## Basic usage example
+## Tutorial
+
 ### Simple bot script example:
 ```python
 from KibotoBotSDK import kibotobot
