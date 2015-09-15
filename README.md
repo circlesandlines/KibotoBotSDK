@@ -8,8 +8,7 @@ The Kiboto Bot SDK is currently in a pre-release state. Stay tuned to get instal
 - [x] search for session based on config
 - [x] listen for game events and execute the bot logic
 - [x] solidify edge cases
-- [ ] add formal tests [simple software, coupled to webserver. samples might suffice]
-- [ ] formal documentation
+- [x] formal documentation
 
 ## Requirements
 - python 2.7, 3.2, 3.3, and 3.4
