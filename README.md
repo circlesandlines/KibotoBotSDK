@@ -1,15 +1,6 @@
 # KibotoBotSDK
 Create a competitive bot to be used in games that support Kiboto
 
-## Status
-The Kiboto Bot SDK is currently in a pre-release state. Stay tuned to get installation instructions, environment setup, and tutorials
-
-## TODO for 1.0 release
-- [x] search for session based on config
-- [x] listen for game events and execute the bot logic
-- [x] solidify edge cases
-- [x] formal documentation
-
 ## Requirements
 - python 2.7, 3.2, 3.3, and 3.4
 - setuptools
