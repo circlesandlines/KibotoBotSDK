@@ -1,13 +1,25 @@
 
 from KibotoBotSDK import kibotobot
 
+smalltalk_cache = [
+	'hey',
+	'sup',
+	'how you doin?',
+	'i\'m good, how\'r you?',
+	'meh, could be better, how\'s the wife?',
+	'she\'s up to no good I tells yah',
+	'feeding the velociraptors again eh?',
+	'you know it bob',
+	'hah!',
+	'the weather',
+	'yup'
+]
+
 def bot_brain(event_data, player_id, game_id):
 	""" your bot logic goes here.
 	be sure to follow game specific formatting """
 
-	reply = {}
-
-	# ...
+	reply = {'smalltalk': smalltalk_cache[event_data['random']]}
 
 	return reply
 
