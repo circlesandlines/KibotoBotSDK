@@ -1,5 +1,6 @@
 
 from KibotoBotSDK import kibotobot
+import random
 
 smalltalk_cache = [
 	'hey',
@@ -19,7 +20,9 @@ def bot_brain(event_data, player_id, game_id):
 	""" your bot logic goes here.
 	be sure to follow game specific formatting """
 
-	reply = {'smalltalk': smalltalk_cache[event_data['random']]}
+	print event_data
+
+	reply = {'smalltalk': smalltalk_cache[random.randint(0, 9)]}
 
 	return reply
 
@@ -33,8 +36,8 @@ mybot = kibotobot.Bot(kiboto_server_hostname="http://localhost",
 		bot_port=9092,
 		logic_method=bot_brain,
 		game_id="sample_game",
-		session_id="1",
-		player_id="P2")
+		session_id="test_session",
+		player_id="Enemy")
 
 if __name__=="__main__":
 	mybot.start()
