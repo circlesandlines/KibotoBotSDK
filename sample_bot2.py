@@ -22,7 +22,7 @@ def bot_brain(event_data, player_id, game_id):
 
 	print event_data
 
-	reply = {'smalltalk': smalltalk_cache[random.randint(0, 9)]}
+	reply = {'action': smalltalk_cache[random.randint(0, 9)], 'name': 'Enemy'}
 
 	return reply
 
