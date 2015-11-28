@@ -29,7 +29,7 @@ actions = {
 	},
 	"Heal": {
 		'id': 8,
-		'applied_to': "self"
+		'applied_to': "self" #NOTE heal can be applied to others too.
 	},
 	"Fire": {
 		'id': 9,
@@ -41,6 +41,12 @@ actions = {
 	}
 }
 
+enemies = [
+	'Psy Punk',
+	'Warlord',
+	'EnerWitch'
+]
+
 def bot_brain(event_data, player_id, game_id):
 	""" A randomized Psy Tower bot. So far it only works for a
 	party and enemy troop size of one. """
@@ -48,9 +54,18 @@ def bot_brain(event_data, player_id, game_id):
         print event_data
 
 	# choose an action randomly. ideally this will be smarter AI :P
-	action = random.choice(list(actions.keys()))
+	player_actions = {
+		'Lou': actions[random.choice(list(actions.keys()))],
+		'Jack': actions[random.choice(list(actions.keys()))],
+		'Jane': actions[random.choice(list(actions.keys()))]
+	}
 
-        reply = {'action': actions[action], 'name': "GoodGuy"}
+	# if attack, choose one of the enemies at random
+	for player in player_actions:
+		if player_actions[player]['applied_to'] == 'enemy':
+			player_actions[player]['applied_to'] = random.choice(enemies)
+
+        reply = {'action': player_actions, 'name': "GoodGuy"}
 
 	return reply
 
